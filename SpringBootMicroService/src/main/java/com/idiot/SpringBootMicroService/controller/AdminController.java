@@ -1,9 +1,7 @@
 package com.idiot.SpringBootMicroService.controller;
 
 import com.idiot.SpringBootMicroService.model.User;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AdminController {
@@ -12,7 +10,7 @@ public class AdminController {
         return "Helo World";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @GetMapping(value = "/user")
     public User user() {
         User user = new User();
         user.setId("1");
@@ -20,5 +18,23 @@ public class AdminController {
         user.setEmail("kushal.kb0606@gmail.com");
         return user;
     }
+    @GetMapping("{id}")
+    public String pathVariable(@PathVariable String id){
+        return "path variable is: "+id;
+    }
+
+    @GetMapping("{id}/{id2}")
+    public String pathVariables(@PathVariable String id,@PathVariable String id2){
+        return "path variable is:"+id+":"+id2;
+    }
+    @GetMapping("requestParam")
+    public String requestParam(@RequestParam String name){
+        return "Your name is : " +name;
+    }
+    @GetMapping("/requestParams")
+    public String requestParams(@RequestParam String name,@RequestParam(name = "email",required = false,defaultValue = "") String emailId){
+        return "Your name is : "+name +" and email id is: "+emailId;
+    }
+
 
 }
