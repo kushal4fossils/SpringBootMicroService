@@ -22,4 +22,15 @@ public class EmployeeServiceImpl implements EmployeeService{
         return employee;
 
     }
+
+    @Override
+    public List<Employee> showEmployee(String name) {
+        List empList;
+        if(name==null || name.isEmpty()){
+            System.out.println("Please enter valid name");
+        }
+        else if(employeeList.get(0).equals(name))
+            empList=employeeList;
+        return employeeList;
+    }
 }
