@@ -22,4 +22,16 @@ public class EmployeeServiceImpl implements EmployeeService{
         return employee;
 
     }
+
+    @Override
+    public List<Employee> getAllEmployees() {
+        return employeeList;
+    }
+
+    @Override
+    public Employee getEmployeeById(String id) {
+        return employeeList.stream().filter(employee -> employee.getEmplId().equals(id)).findFirst().get();
+    }
+
+
 }
