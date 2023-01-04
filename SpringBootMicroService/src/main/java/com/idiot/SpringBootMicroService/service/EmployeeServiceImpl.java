@@ -1,5 +1,6 @@
 package com.idiot.SpringBootMicroService.service;
 
+import com.idiot.SpringBootMicroService.Exception.EmployeeNotFoundException;
 import com.idiot.SpringBootMicroService.model.Employee;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee getEmployeeById(String id) {
-        return employeeList.stream().filter(employee -> employee.getEmplId().equals(id)).findFirst().get();
+        return employeeList.stream().filter(employee -> employee.getEmplId().equals(id)).findFirst().
+                orElseThrow(()->new EmployeeNotFoundException(""+"Employee not found with Id: "+id));
+
     }
 
 
